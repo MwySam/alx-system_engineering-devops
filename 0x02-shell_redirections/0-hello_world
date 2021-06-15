@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "Hello,World \n " > STDOUT
+printf "Hello,World \n " > STDOUT
