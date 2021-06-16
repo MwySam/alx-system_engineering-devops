@@ -1,0 +1,1 @@
+__This contains scripts on shell init files, variables and expansions__
