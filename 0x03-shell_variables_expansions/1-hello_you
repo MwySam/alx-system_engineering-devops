@@ -1,2 +1,2 @@
 #!/bin/bash
-alias user='SUDO_USER' | echo 'hello user'
+echo 'hello $USER'
