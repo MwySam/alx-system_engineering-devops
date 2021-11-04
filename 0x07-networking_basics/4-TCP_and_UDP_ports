@@ -2,4 +2,4 @@
 # A bash script that displays listening ports that:
 # Only shows listening sockets
 # Shows the PID and name of the program belonging to each socket
-netstat -lp
+sudo netstat -lp
