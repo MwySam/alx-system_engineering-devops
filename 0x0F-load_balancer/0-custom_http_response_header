@@ -10,6 +10,7 @@ sudo mkdir -p /var/www/html /var/www/error
 sudo chmod -R 755 /var/www
 echo 'Hello World!' > /var/www/html/index.html
 echo "Ceci n'est pas une page" > /var/www/html/404.html
+sudo cp /etc/nginx/sites-enabled/default nginx-sites-enabled_default.backup
 server_config=\
 "server {
 	listen 80 default_server;
@@ -30,5 +31,10 @@ server_config=\
 			     }
 }"
 
-echo "$server_config" > /etc/nginx/sites-enabled/default
-sudo service nginx restart
+echo "$server_config" | sudo dd status=none of=/etc/nginx/sites-enabled/default
+
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+    sudo service nginx start
+else
+    sudo service nginx restart  
+fi
