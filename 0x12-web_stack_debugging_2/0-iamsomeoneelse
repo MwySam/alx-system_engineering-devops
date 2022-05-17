@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-sudo whoami
+# runs whoami in superuser
+sudo "$1" -s /bin/bash -c 'whoami'
