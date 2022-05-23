@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Export data in CSV
+Export data in the CSV
 """
 
 if __name__ == "__main__":
@@ -12,7 +12,7 @@ if __name__ == "__main__":
     userId = sys.argv[1]
     user = requests.get("https://jsonplaceholder.typicode.com/users/{}"
                         .format(userId))
-    user_name = user.json().get('username')
+    name = user.json().get('username')
     todos = requests.get('https://jsonplaceholder.typicode.com/todos')
 
     filename = userId + '.csv'
@@ -21,5 +21,5 @@ if __name__ == "__main__":
                             quoting=csv.QUOTE_ALL, lineterminator='\n')
         for task in todos.json():
             if task.get('userId') == int(userId):
-                writer.writerow([userId, name, str(task.get('tasks_done')),
+                writer.writerow([userId, name, str(task.get('completed')),
                                  task.get('title')])
