@@ -2,32 +2,29 @@
 """
 Gather data from API
 """
-
 import requests
 import sys
 
+if __name__ == "__main__":
 
-if __name__ == '__main__':
-
-    user_id = int(sys.argv[1])
+    userId = sys.argv[1]
     user = requests.get("https://jsonplaceholder.typicode.com/users/{}"
-            .format(user_id))
+                        .format(userId))
 
-    user_name = user.json().get('user_name')
+    name = user.json().get('name')
 
-    todos = requests.get("https://jsonplaceholder.typicode.com/todos")
-    tasks_done = 0
-    total_tasks = 0
-    
+    todos = requests.get('https://jsonplaceholder.typicode.com/todos')
+    totalTasks = 0
+    completed = 0
+
     for task in todos.json():
-        if task.get("user_id") == (user_id):
-            total_tasks += 1
-            if task.get("tasks_done"):
-            tasks_done += 1
+        if task.get('userId') == int(userId):
+            totalTasks += 1
+            if task.get('completed'):
+                completed += 1
 
-            print(
-                "Employee {} is done with tasks ({}/{}):"
-                .format(user_name,tasks_done,total_tasks))
-            print(
-                '\n'.join(["\t " + task.get('title') for task in todos.json()
-                           if task.get('userId') == int(userId) and task.get('completed')]))
+    print('Employee {} is done with tasks({}/{}):'
+          .format(name, completed, totalTasks))
+
+    print('\n'.join(["\t " + task.get('title') for task in todos.json()
+          if task.get('userId') == int(userId) and task.get('completed')]))
