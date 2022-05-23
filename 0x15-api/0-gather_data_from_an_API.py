@@ -25,9 +25,8 @@ if __name__ == '__main__':
             if task.get("tasks_done"):
             tasks_done += 1
 
-print(
-   "Employee {} is done with tasks ({}/{}):"
-    .format(user_name,tasks_done,total_tasks)
-       
-    "/t {}".format(tasks_done.get('title'))
-    )
+            print(
+                "Employee {} is done with tasks ({}/{}):"
+                .format(user_name,tasks_done,total_tasks))
+            print(
+                "/t {}".format(tasks_done.get('title')))
